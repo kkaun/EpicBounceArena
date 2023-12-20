@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
 
     private float speed;
-    private static float standardSpeed = 5f;
-    private static float extraGripSpeed = 9f;
+    private static float standardSpeed = 8f;
+    private static float extraGripSpeed = 12f;
 
     public static float powerupPushStrength = 15.0f;
     public static float eliteEnemyPowerupDecrease = 12.0f;

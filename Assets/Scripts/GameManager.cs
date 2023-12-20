@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -23,6 +21,11 @@ public class GameManager : MonoBehaviour
         currentLevelText.text = "Level: " + GetCurrentWaveNumber();
         scoreText.text = "Score: " + score;
         pickedPowerupText.text = "Buff picked: " + pickedPowerupDescr;
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     public void ResetGame()
