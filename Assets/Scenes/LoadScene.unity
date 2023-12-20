@@ -1045,7 +1045,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: by Kyr Kaun
+  m_text: by Kir Kaun
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0f7c7507864954db58b753dff8f68d39, type: 2}
   m_sharedMaterial: {fileID: 594159727920133822, guid: 0f7c7507864954db58b753dff8f68d39, type: 2}
@@ -1054,8 +1054,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4291480266
-  m_fontColor: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

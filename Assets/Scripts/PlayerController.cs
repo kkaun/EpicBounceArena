@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -12,8 +11,9 @@ public class PlayerController : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip bounceAudio;
 
+    public GameObject playerIndicator;
+
     public GameObject centerPitTop;
-    public GameObject centerPitBottom;
 
     public GameObject projectilePrefab;
     private GameObject projectile;
@@ -31,9 +31,9 @@ public class PlayerController : MonoBehaviour
     public static float eliteEnemyPowerupDecrease = 12.0f;
     public static float bossPoweupDecrease = 16.0f;
 
-    public static float explosionForce = 33f;
+    public static float explosionForce = 35f;
     public static float explosionRadius = 18.0f;
-    public static float explosionJumpHeight = 7f;
+    public static float explosionJumpHeight = 12f;
 
     public static float forceAuraRadius = 4f;
     public static float forceAuraPushFactor = 0.5f;
@@ -71,14 +71,27 @@ public class PlayerController : MonoBehaviour
         explosionWaveAura.Stop();
     }
 
-    void Update()
+    void LateUpdate()
     {
-        float forwardInput = Input.GetAxis("Vertical");
-        playerRb.AddForce(focalPoint.transform.forward * forwardInput * speed);
+        UpdateMovement();
+
+        UpdatePlayerIndicator();
 
         UpdateAuras();
 
         CheckDeath();
+    }
+
+    private void UpdateMovement()
+    {
+        float forwardInput = Input.GetAxis("Vertical");
+        playerRb.AddForce(focalPoint.transform.forward * forwardInput * speed);
+    }
+
+    private void UpdatePlayerIndicator()
+    {
+        Vector3 indicatorPos = new Vector3(transform.position.x, transform.position.y + 1.35f, transform.position.z);
+        playerIndicator.transform.position = indicatorPos;
     }
 
     private void UpdateAuras()
@@ -260,7 +273,6 @@ public class PlayerController : MonoBehaviour
         other.gameObject.GetComponent<ObjectBounce>().DestroyEffects();
 
         centerPitTop.GetComponent<CenterPitController>().OpenPit();
-        centerPitBottom.GetComponent<CenterPitController>().OpenPit();
     }
 
     IEnumerator PowerupCountdownRoutine()

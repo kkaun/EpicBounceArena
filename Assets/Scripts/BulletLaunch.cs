@@ -52,9 +52,10 @@ public class BulletLaunch : MonoBehaviour
         Rigidbody targetRigidbody = collision.gameObject.GetComponent<Rigidbody>();
         Vector3 away = -collision.contacts[0].normal; //should refactor this, as may produce memory garbage
         targetRigidbody.AddForce(away * rocketStrength, ForceMode.Impulse);
-        Destroy(gameObject);
 
         bulletAura.Stop();
         Destroy(bulletAura);
+
+        Destroy(gameObject);
     }
 }

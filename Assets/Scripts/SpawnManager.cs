@@ -19,7 +19,7 @@ public class SpawnManager : MonoBehaviour
 
     private const float generalPowerupGenerationInterval = 8f;
 
-    private const int bossAppearanceVawesInterval = 5;
+    private const int bossAppearanceVawesInterval = 2;
 
     private static Vector3 specificSpawnPos1 = new Vector3(0.85f, 0f, -11.7f);
     private static Vector3 specificSpawnPos2 = new Vector3(-11.55f, 0f, 0.28f);
@@ -138,8 +138,9 @@ public class SpawnManager : MonoBehaviour
                 }
                 break;
             case 5:
-                //Open center pit only for boss, and only at specific positions of arena
-                if (GameObject.FindGameObjectsWithTag(nameof(EnemyType.Boss)).Length >= 1)
+                //Open center pit only for boss or elite, and only at specific positions of arena
+                if (GameObject.FindGameObjectsWithTag(nameof(EnemyType.EliteEnemy)).Length >= 1
+                    || GameObject.FindGameObjectsWithTag(nameof(EnemyType.Boss)).Length >= 1)
                 {
                     Instantiate(openCenterPitPrefab, GenerateSpecificSpawnPosition(), openCenterPitPrefab.transform.rotation);
                 }

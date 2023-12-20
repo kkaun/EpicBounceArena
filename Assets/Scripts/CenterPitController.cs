@@ -8,8 +8,7 @@ public class CenterPitController : MonoBehaviour
     public ParticleSystem aura2;
 
     private const float rotationSpeed = 45f;
-    private const float rotationAngle = 90f;
-    private const float rotateAndStayOnTopTimeSec = 4f;
+    private const float rotationAngle = 358f;
 
     private bool isRotating;
 
@@ -23,37 +22,39 @@ public class CenterPitController : MonoBehaviour
         aura2.Stop();
     }
 
-    void Update()
+    void LateUpdate()
     {
         if(isRotating)
         {
+            aura1.gameObject.SetActive(true);
+            aura2.gameObject.SetActive(true);
+
             aura1.Play();
             aura2.Play();
 
             float rotationAmount = rotationSpeed * Time.deltaTime;
 
-            transform.Rotate(Vector3.right, rotationAmount);
+            transform.Rotate(Vector3.forward, rotationAmount);
 
-            if (Mathf.Abs(transform.rotation.eulerAngles.x) >= rotationAngle)
+            Debug.Log("ANGLE: " + transform.rotation.eulerAngles.z);
+
+            if (Mathf.Abs(transform.rotation.eulerAngles.z) >= rotationAngle)
             {
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
                 isRotating = false;
             }
         } else
         {
             aura1.Stop();
             aura2.Stop();
+
+            aura1.gameObject.SetActive(false);
+            aura2.gameObject.SetActive(false);
         }
     }
 
     public void OpenPit()
     {
         isRotating = true;
-        StartCoroutine(ResetPitTask());
-    }
-
-    IEnumerator ResetPitTask()
-    {
-        yield return new WaitForSeconds(rotateAndStayOnTopTimeSec);
-        OpenPit();
     }
 }

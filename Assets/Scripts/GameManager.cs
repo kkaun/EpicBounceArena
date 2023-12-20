@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetWaveNumber()
     {
-        waveNumber = 1;
+        waveNumber = 0;
     }
 
     public void IncrementWaveNumber()
